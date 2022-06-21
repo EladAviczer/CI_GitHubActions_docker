@@ -1,5 +1,5 @@
 FROM maven:3-jdk-8-alpine AS build
-RUN adduser rafa
+RUN groupadd -r rafa && useradd --no-log-init -r -g rafa rafa
 USER rafa
 ADD . /my-app
 WORKDIR /my-app
@@ -8,7 +8,7 @@ RUN mvn compile
 RUN mvn package
 
 
-FROM openjdk:8-jdk-alpine
+RUN groupadd -r rafa && useradd --no-log-init -r -g rafa rafa
 RUN useradd rafa
 USER rafa
 COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-1.0.1.jar
