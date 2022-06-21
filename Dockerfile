@@ -4,7 +4,7 @@ FROM maven:3.6.0-jdk-11-slim AS build
 ADD my-app /home/my-app
 WORKDIR /home/my-app
 #RUN mvn versions:set -DnewVersion="1.0.1"
-RUN mvn compile -X
+#RUN mvn compile -X
 RUN mvn package
 
 
