@@ -1,9 +1,12 @@
 FROM maven:3-jdk-8-alpine AS build
 RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 USER zorki
+RUN pwd
 RUN ls
 ADD . /my-app
-WORKDIR my-app
+WORKDIR /my-app
+RUN pwd
+RUN ls
 RUN mvn versions:set -DnewVersion="1.0.1"
 RUN mvn compile
 RUN mvn package
