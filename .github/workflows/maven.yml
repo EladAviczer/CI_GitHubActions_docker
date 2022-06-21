@@ -23,6 +23,6 @@ jobs:
       run: ls -a
     - name: switch to target folder
       run: |
-        cd traget
+        cd target
         ls -a
       
