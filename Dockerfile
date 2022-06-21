@@ -1,5 +1,5 @@
 FROM maven:3-jdk-8-alpine AS build
-RUN groupadd -r rafa && useradd --no-log-init -r -g rafa rafa
+RUN groupadd -gid 1000 nogodmod && useradd --uid 1000 --gid nogodmod --shell /bin/bash --create-home node
 USER rafa
 ADD . /my-app
 WORKDIR /my-app
