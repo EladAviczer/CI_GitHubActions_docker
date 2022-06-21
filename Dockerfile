@@ -1,5 +1,5 @@
 FROM maven:3-jdk-8-alpine AS build
-RUN useradd rafa
+RUN adduser rafa
 USER rafa
 ADD . /my-app
 WORKDIR /my-app
