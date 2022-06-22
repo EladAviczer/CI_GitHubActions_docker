@@ -27,4 +27,4 @@ USER zorki
 #COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
 COPY --from=build /my-app/target/my-app-${version}.jar my-app-${version}.jar
 RUN ls
-ENTRYPOINT ["java" "-cp" "my-app-1.0.1.jar" "com.mycompany.app.App"]
+CMD ["java" "-cp" "my-app-1.0.1.jar" "com.mycompany.app.App"]
