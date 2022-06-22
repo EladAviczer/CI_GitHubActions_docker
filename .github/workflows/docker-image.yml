@@ -18,7 +18,7 @@ jobs:
     - name: check version again
       run: mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout
     - name: set version variable
-      run: echo VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+      run: echo VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_ENV
     - name: echo the version var
       run: echo ${{ env.VERSION }}
     - name: Build the Docker image
