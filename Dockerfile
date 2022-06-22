@@ -10,7 +10,7 @@ RUN ls
 ARG version
 ENV VER ${version}
 RUN echo ${VER}
-ENV fullname="my-app-${version}"
+ARG fullname="my-app-${version}"
 RUN echo ${version}
 #RUN mvn versions:set -DnewVersion="1.0.1"
 RUN mvn compile
@@ -18,6 +18,7 @@ RUN mvn package
 
 FROM openjdk:8-jdk-alpine
 ARG fullname
+RUN echo ${fullname}
 ARG version
 #RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 #USER zorki
