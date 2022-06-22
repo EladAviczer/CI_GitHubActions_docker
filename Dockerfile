@@ -15,4 +15,4 @@ ARG fulljar=${fullname}.jar
 RUN echo ${fulljar}
 #CMD exec java -cp $fulljar com.mycompany.app.App
 RUN java -cp ${fulljar} com.mycompany.app.App
-CMD ["java","-cp", "${fulljar}", "com.mycompany.app.App"]
+CMD ["sh", "-c", "java","-cp", "${fulljar}", "com.mycompany.app.App"]
