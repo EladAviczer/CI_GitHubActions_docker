@@ -4,10 +4,7 @@ FROM maven:3-jdk-8-alpine AS build
 ADD . /my-app
 WORKDIR /my-app
 ARG version
-ENV VER ${version}
-RUN echo ${VER}
-ARG fullname="my-app-${version}"
-RUN echo ${version}
+ARG fullname
 RUN mvn compile
 RUN mvn package
 
