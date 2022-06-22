@@ -14,6 +14,6 @@ COPY --from=build /my-app/target/${fullname}.jar ${fullname}.jar
 ENV fulljar=${fullname}.jar
 RUN echo ${fulljar}
 RUN java -cp my-app-1.0.1.jar com.mycompany.app.App
-#CMD exec java -jar $fulljar com.mycompany.app.App
-CMD exec java -jar my-app-1.0.1.jar
+CMD exec java -jar ${fulljar}
+#CMD exec java -jar my-app-1.0.1.jar
 #CMD ["sh", "-c", "java","-cp", "${fulljar}", "com.mycompany.app.App"]
