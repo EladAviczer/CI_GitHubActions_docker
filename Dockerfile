@@ -17,6 +17,15 @@ RUN mvn compile
 RUN mvn package
 
 FROM openjdk:8-jdk-alpine
+
+RUN adduser -D $USER \
+        && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
+        && chmod 0440 /etc/sudoers.d/$USER
+USER $USER
+WORKDIR $HOME
+RUN whoami
+RUN sudo whoami
+
 ARG fullname
 RUN echo ${fullname}
 ARG version
