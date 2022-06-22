@@ -16,7 +16,7 @@ jobs:
     - name: set version variable
       run: echo VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_ENV
     - name: set fullname
-      run: echo FULLNAME="my-app-${{ env.VERSION }}"
+      run: echo FULLNAME="my-app-${{ env.VERSION }}" >> $GITHUB_ENV
 
 
     - name: docker login
