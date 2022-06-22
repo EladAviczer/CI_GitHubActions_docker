@@ -20,9 +20,10 @@ FROM openjdk:8-jdk-alpine
 ARG fullname
 RUN echo ${fullname}
 ARG version
+RUN echo ${version}
 #RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 #USER zorki
 #COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
-COPY --from=build /my-app/target/${fullname}.jar ${fullname}
+COPY --from=build /my-app/target/${fullname}.jar my-app-${version}.jar
 RUN ls
 ENTRYPOINT ["java" "-cp" "my-app-1.0.1.jar" "com.mycompany.app.App"]
