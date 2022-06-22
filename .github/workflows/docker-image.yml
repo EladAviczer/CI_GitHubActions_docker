@@ -11,18 +11,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: check version
-      run: mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout
     - name: upgrade patch version
       run: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit
-    - name: check version again
-      run: mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout
     - name: set version variable
       run: echo VERSION=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_ENV
-    - name: echo the version var
-      run: echo ${{ env.VERSION }}
-    #- name: Build the Docker image
-     # run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --tag my-app:${{ env.VERSION }}
 
 
 
@@ -34,8 +26,6 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build docker image
       run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --tag eladavi/my-app:${{ env.VERSION }}
-    - name: check images
-      run: docker images
     - name: Docker Push
       run: docker push eladavi/my-app:${{ env.VERSION }}
 
