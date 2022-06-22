@@ -31,7 +31,7 @@ jobs:
         DOCKER_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       run: |
-        docker login -U $DOCKER_USER -p $DOCKER_PASSWORD
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build docker image
       run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --tag my-app:${{ env.VERSION }}
     
