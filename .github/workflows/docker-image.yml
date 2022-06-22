@@ -36,6 +36,6 @@ jobs:
       run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --tag my-app:${{ env.VERSION }}
     
     - name: Docker Push
-      run: docker push eladavi/my-app
+      run: docker push eladavi/my-app-${{ env.VERSION }}
 
 
