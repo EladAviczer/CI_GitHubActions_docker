@@ -18,4 +18,4 @@ jobs:
     - name: check version again
       run: mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-app:$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
+      run: docker build . --file Dockerfile --tag my-app:${mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout}
