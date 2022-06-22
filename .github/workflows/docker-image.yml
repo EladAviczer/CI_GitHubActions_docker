@@ -22,4 +22,4 @@ jobs:
     - name: echo the version var
       run: echo ${{ env.VERSION }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --build-arg version=${env.VERSION} --tag my-app:${{ env.VERSION }}
+      run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --tag my-app:${{ env.VERSION }}
