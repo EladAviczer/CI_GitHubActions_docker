@@ -13,4 +13,5 @@ USER zorki
 COPY --from=build /my-app/target/${fullname}.jar ${fullname}.jar
 ARG fulljar=${fullname}.jar
 RUN echo ${fulljar}
-CMD exec java -cp $fulljar com.mycompany.app.App
+#CMD exec java -cp $fulljar com.mycompany.app.App
+CMD ["java","-cp", "${fulljar}", "com.mycompany.app.App"]
