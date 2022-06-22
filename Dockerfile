@@ -7,7 +7,9 @@ ADD . /my-app
 WORKDIR /my-app
 RUN pwd
 RUN ls
-ENV version=${mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout}
+ARG version
+ENV VER ${version}
+
 ENV fullname="my-app ${version}"
 RUN echo ${version}
 #RUN mvn versions:set -DnewVersion="1.0.1"
@@ -17,7 +19,7 @@ RUN mvn package
 FROM openjdk:8-jdk-alpine
 #RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 #USER zorki
-COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-1.0.1.jar
-COPY --from=build /my-app/target/*.jar ${version}
+COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
+COPY --from=build /my-app/target/*.jar ${VER}
 RUN ls
 ENTRYPOINT ["java" "-cp" "my-app-1.0.1.jar" "com.mycompany.app.App"]
