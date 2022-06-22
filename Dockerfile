@@ -10,16 +10,18 @@ RUN ls
 ARG version
 ENV VER ${version}
 RUN echo ${VER}
-ENV fullname="my-app ${version}"
+ENV fullname="my-app-${version}"
 RUN echo ${version}
 #RUN mvn versions:set -DnewVersion="1.0.1"
 RUN mvn compile
 RUN mvn package
 
 FROM openjdk:8-jdk-alpine
+ARG fullname
+ARG version
 #RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 #USER zorki
-COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
-#COPY --from=build /my-app/target/*.jar my-app-${VER}.jar
+#COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
+COPY --from=build /my-app/target/${fullname}.jar ${fullname}
 RUN ls
 ENTRYPOINT ["java" "-cp" "my-app-1.0.1.jar" "com.mycompany.app.App"]
