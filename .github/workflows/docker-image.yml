@@ -34,7 +34,8 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build docker image
       run: docker build . --file Dockerfile --build-arg version=${{ env.VERSION }} --tag my-app:${{ env.VERSION }}
-    
+    - name: check images
+      run: docker images
     - name: Docker Push
       run: docker push eladavi/my-app:1.0.1
 
