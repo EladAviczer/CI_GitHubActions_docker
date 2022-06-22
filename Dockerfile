@@ -11,4 +11,5 @@ ARG fullname
 RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 USER zorki
 COPY --from=build /my-app/target/${fullname}.jar ${fullname}.jar
-CMD exec java -cp com.mycompany.app.App ${fullname}.jar 
+ARG fulljar=${fullname}.jar
+CMD exec java -cp  ${fullname}.jar com.mycompany.app.App
