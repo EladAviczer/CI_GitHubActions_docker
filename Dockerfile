@@ -8,7 +8,6 @@ RUN mvn package
 
 FROM openjdk:8-jdk-alpine
 ARG fullname
-RUN echo ${fullname}
 RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 USER zorki
 COPY --from=build /my-app/target/${fullname}.jar ${fullname}.jar
