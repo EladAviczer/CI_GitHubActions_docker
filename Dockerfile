@@ -9,7 +9,7 @@ RUN pwd
 RUN ls
 ARG version
 ENV VER ${version}
-
+RUN echo ${VER}
 ENV fullname="my-app ${version}"
 RUN echo ${version}
 #RUN mvn versions:set -DnewVersion="1.0.1"
