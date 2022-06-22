@@ -37,6 +37,6 @@ jobs:
     - name: check images
       run: docker images
     - name: Docker Push
-      run: docker push eladavi/my-app:1.0.1
+      run: docker push eladavi/my-app
 
 
