@@ -17,21 +17,13 @@ RUN mvn compile
 RUN mvn package
 
 FROM openjdk:8-jdk-alpine
-
-RUN adduser -D $USER \
-        && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
-        && chmod 0440 /etc/sudoers.d/$USER
-USER $USER
-WORKDIR $HOME
-RUN whoami
-RUN sudo whoami
-
 ARG fullname
 RUN echo ${fullname}
 ARG version
 RUN echo ${version}
-#RUN addgroup -S appgroup && adduser -S zorki -G appgroup
-#USER zorki
+
+RUN addgroup -S appgroup && adduser -S zorki -G appgroup
+USER zorki
 #COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
 COPY --from=build /my-app/target/my-app-${version}.jar my-app-${version}.jar
 RUN ls
