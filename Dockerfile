@@ -19,7 +19,7 @@ RUN mvn package
 FROM openjdk:8-jdk-alpine
 #RUN addgroup -S appgroup && adduser -S zorki -G appgroup
 #USER zorki
-#COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
-COPY --from=build /my-app/target/*.jar my-app-${VER}.jar
+COPY --from=build /my-app/target/my-app-1.0.1.jar my-app-${VER}.jar
+#COPY --from=build /my-app/target/*.jar my-app-${VER}.jar
 RUN ls
 ENTRYPOINT ["java" "-cp" "my-app-1.0.1.jar" "com.mycompany.app.App"]
