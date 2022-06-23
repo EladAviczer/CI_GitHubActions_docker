@@ -1,6 +1,4 @@
 FROM maven:3-jdk-8-alpine AS build
-#RUN addgroup -S appgroup && adduser -S zorki -G appgroup
-#USER zorki
 ADD . /my-app
 WORKDIR /my-app
 RUN mvn compile
